@@ -1,5 +1,5 @@
-let pokemonRepository = (function () {
-  let pokemonList = [
+const pokemonRepository = (function () {
+  const pokemonList = [
   {
   name: 'Charizard',
   height: 1.7,
@@ -23,7 +23,7 @@ function add(pokemon) {
     console.log("A pokemon is required");
   }
 
-  let keys = Object.keys(pokemon);
+  const keys = Object.keys(pokemon);
   if (!keys.includes("name")) {
     console.log("Missing Requirements");
   }
@@ -37,8 +37,8 @@ function getAll() {
 
 //Function to filter pokemon by Name
 function pokemonFilter(name) {
-  let result = getAll().filter((pokemon) => pokemon.name == name);
-  return result[0];   // starting index of 0
+  const result = getAll().filter((pokemon) => pokemon.name === name);
+  return result[0] || "No Pokemon found with that name!";   // starting index of 0
 }
 
 //Return Functions
