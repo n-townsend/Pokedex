@@ -41,12 +41,32 @@ function pokemonFilter(name) {
   return result[0] || "No Pokemon found with that name!";   // starting index of 0
 }
 
+function addListItem(pokemon) {
+  const pokemonList = document.querySelector('.pokemon-list'); //New Variable to take the defined class from the UL on HTML Page
+  const listPokemon = document.createElement("li"); //New Variable to create 'li' inside 'ul'
+  const button = document.createElement("button"); //Created a button element to be used for each item
+  button.innerText = pokemon.name; //text to be displayed inside button, this is set to draw the name of each pokemon in the list
+  button.classList.add("button-class"); //link to the css page for button styling
+  listPokemon.appendChild(button); //This appends (connects) the button to the 'li'
+  pokemonList.appendChild(listPokemon); //Appends 'li' to the parent list element
+  button.addEventListener('click', () => {
+    showDetails(pokemon);
+  }); //Event Listener for logging the details of the pokemon selected in the console
+}
+
+function showDetails(pokemon) {
+  console.log(pokemon)
+} //Function Created to show details so the Event Listener could log the selected pokemon data 
+
 //Return Functions
 return {
   add: add,
   getAll: getAll,
+  addListItem: addListItem,
   pokemonFilter: pokemonFilter,
 };
 })();
 
-pokemonRepository.getAll().forEach(pokemonList => document.write(pokemonList.name + ' ' + pokemonList.height + ' ' + pokemonList.types + '<br>'));
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
+});
