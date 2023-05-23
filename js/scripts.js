@@ -3,7 +3,6 @@ const pokemonRepository = (function () {
   const apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   //modalContainer Variable to select the id from the html for the modal makeup
   let modalContainer = document.querySelector('#modal-container'); 
-
 //Function adds pokemon and validates typeof
 function add(pokemon) {
   if (typeof pokemon !== "object") {
@@ -42,8 +41,8 @@ function addListItem(pokemon) {
 }
 
 function showDetails(pokemon) {
-  loadDetails(pokemon).then(function () {
-    console.log(pokemon);
+  pokemonRepository.loadDetails(pokemon).then(function () {
+    showModal(pokemon);
   });
 } //Function Created to show details so the Event Listener could log the selected pokemon data 
 
@@ -54,6 +53,8 @@ function loadList() {
     json.results.forEach(function (item) {
       let pokemon = {
         name: item.name,
+        height: item.height,
+        types: item.types,
         detailsUrl: item.url
       };
       add(pokemon);
@@ -72,13 +73,15 @@ function loadDetails(item) {
     item.imageUrl = details.sprites.front_default;
     item.height = details.height;
     item.types = details.types;
+  }).then(function () {
+    showModal(pokemon);
   }).catch(function (e) {
     console.error(e);
   });
 } //Function to load details pulled from detailsurl in the api
 
 //Show Modal Function
-function showModal(title, text) {//paramaters to enable modal in ()
+function showModal(pokemon) {//paramaters to enable modal in ()
   // Clear all existing modal content
   modalContainer.innerHTML = '';
   //Creates the Modal as a Div element in html with the class called modal
@@ -91,14 +94,18 @@ function showModal(title, text) {//paramaters to enable modal in ()
   closeButtonElement.addEventListener('click', hideModal);//executes hide modal when clicked
   //Create title of modal
   let titleElement = document.createElement('h1');
-  titleElement.innerText = title;
+  titleElement.innerText = pokemon.name;
   //Create inner content of modal
   let contentElement = document.createElement('p');
-  contentElement.innerText = text;
+  contentElement.innerText = pokemon.height + 'm ';
+// Create an <img> element
+  let image = document.createElement('img');
+  image.src = 'https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/1.svg';
   //Adds elements to modal and modal to container
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
   modal.appendChild(contentElement);
+  modal.appendChild(image);
   modalContainer.appendChild(modal);
   //Adds is-visible styling from css
   modalContainer.classList.add('is-visible'); 
@@ -125,7 +132,7 @@ modalContainer.addEventListener('click', (e) => {
 });
 
 document.querySelector('#show-modal').addEventListener('click', () => {
-  showModal('pokemon', 'pokemon height');
+  showModal(pokemon);
 });
 
 //Return Functions
