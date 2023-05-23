@@ -100,7 +100,7 @@ function showModal(pokemon) {//paramaters to enable modal in ()
   contentElement.innerText = pokemon.height + 'm ';
 // Create an <img> element
   let image = document.createElement('img');
-  image.src = 'https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/1.svg';
+  image.src = pokemon.imageUrl;
   //Adds elements to modal and modal to container
   modal.appendChild(closeButtonElement);
   modal.appendChild(titleElement);
