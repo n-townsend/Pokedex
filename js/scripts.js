@@ -41,9 +41,7 @@ function addListItem(pokemon) {
 }
 
 function showDetails(pokemon) {
-  pokemonRepository.loadDetails(pokemon).then(function () {
-    showModal(pokemon);
-  });
+  pokemonRepository.loadDetails(pokemon)
 } //Function Created to show details so the Event Listener could log the selected pokemon data 
 
 function loadList() {
@@ -73,9 +71,10 @@ function loadDetails(item) {
     item.imageUrl = details.sprites.front_default;
     item.height = details.height;
     item.types = details.types;
-  }).then(function () {
-    showModal(pokemon);
-  }).catch(function (e) {
+    return item
+  }).then(pokemon =>
+    showModal(pokemon)
+  ).catch(function (e) {
     console.error(e);
   });
 } //Function to load details pulled from detailsurl in the api
@@ -131,7 +130,7 @@ modalContainer.addEventListener('click', (e) => {
   }
 });
 
-document.querySelector('#show-modal').addEventListener('click', () => {
+document.querySelector('#modal-container').addEventListener('click', () => {
   showModal(pokemon);
 });
 
