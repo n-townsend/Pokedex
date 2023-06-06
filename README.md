@@ -1,4 +1,4 @@
-# simple-js-app
+# Pokedex
 Pokemon list catalog to browse information for the first 151 pokemon. This application will work in Firefox, Chrome, Edge and Safari browsers
 
 # Application Features
