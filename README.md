@@ -1,6 +1,6 @@
 ## Pokedex App
 
-<img src="./assets/homescreen.png" width="200"> <img src="./assets/pokemon_details.png" width="200">
+<img src="./assets/homescreen.png" hieght="200" width="200"> <img src="./assets/pokemon_details.png" width="200">
 
 Pokemon app to show details of selected pokemon. Search bar enabled with name and number search references.
 Pokemon details are pulled from the API pokeapi.
