@@ -68,10 +68,10 @@ async function navigatePokemon(id) {
 }
 
 const typeColors = {
-  normal: "#A8A878",
-  fire: "#F08030",
-  water: "#6890F0",
-  electric: "#F8D030",
+  normal: "#C3C3AA",
+  fire: "#F62817",
+  water: "#2B65EC",
+  electric: "#FFDF00",
   grass: "#78C850",
   ice: "#98D8D8",
   fighting: "#C03028",
@@ -85,7 +85,6 @@ const typeColors = {
   dragon: "#7038F8",
   dark: "#705848",
   steel: "#B8B8D0",
-  dark: "#EE99AC",
 };
 
 function setElementStyles(elements, cssProperty, value) {
